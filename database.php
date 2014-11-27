@@ -1,13 +1,11 @@
 <?php
-    $host_name  = "xxxxxxxxx";
-    $database   = "xxxxxxx";
-    $user_name  = "xxxxxxxx";
-    $password   = "xxxxxxxxxxxxxxx";
+    $host_name  = "db550747624.db.1and1.com";
+    $database   = "db550747624";
+    $user_name  = "dbo550747624";
+    $password   = "lepassword";
 
-    $connect = mysqli_connect($host_name, $user_name, $password, $database);
-
-    if (mysqli_connect_errno())
-    {
-        echo "Verbindung zum MySQL Server fehlgeschlagen: " . mysqli_connect_error();
-    }
+    $connect = mysql_connect($host_name, $user_name, $password, $database);
+	
+	$db = mysql_select_db($database);
+	
 ?>

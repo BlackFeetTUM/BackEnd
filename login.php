@@ -1,31 +1,26 @@
 <?PHP
+	include 'includor.php';
 
-	session_start();
 	$_SESSION['userId'] = '';
 	
-	include 'database.php';
-
-	$loginFailPage = "";
-	$loginSuccessPage = "";
-	
-	$hashedUserName = md5($_POST['username']);
 	$hashedPassword = md5($_POST['password']);
 	
-	$query = "SELECT userId, username FROM user WHERE username = '".mysqli_real_escape_string($hashedUserName)."' AND password = '".mysqli_real_escape_string($hashedUserName)."'";
-	$result = mysqli_query($query);
-	while($line = mysqli_fetch_array($result))
+	$query = "SELECT userId, username FROM user WHERE username = '".mysql_real_escape_string($_POST['username'])."' AND password = '".mysql_real_escape_string($hashedPassword)."'";
+	$result = mysql_query($query);
+	while($line = mysql_fetch_array($result))
 	{
 		$_SESSION['userId'] = $line['userId'];
+		$_SESSION['username'] = $line['username'];
 	}
 	
 	if($_SESSION['userId'] != "")
 	{
-		header("Location: ".$loginSuccessPage);
+		header("Location: ".LOGINSUCCESSPAGE);
 		die();
 	}
 	else
 	{
-		header("Location: ".$loginFailPage);
+		header("Location: ".LOGINFAILPAGE);
 		die();
 	}
 	
