@@ -24,6 +24,17 @@
 	$query = "INSERT INTO lectures (name, startDate, active, password) VALUES('".mysql_real_escape_string($_POST['name'])."','".mysql_real_escape_string(date("Y-m-d H:i:s"))."','1','".mysql_real_escape_string($password)."')";
 	$result = mysql_query($query);
 	
+	
+	$query = "SELECT lectureId FROM lectures WHERE password = '".mysql_real_escape_string($password)."'";
+	$result = mysql_query($query);
+	while($row = mysql_fetch_array($result)
+	{
+		$_SESSION['lectureId'] = $row['lectureId'];
+	}
+	
+	$query = "INSERT INTO session (userId, lectureId, role) VALUES('".$_SESSION['userId']."','".$_SESSION['lectureId']."','1')";
+	$result = mysql_query($query);
+	
 	if($result)
 		header("Location: ".LECTURECREATIONSUCCESS);
 	else

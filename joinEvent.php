@@ -14,6 +14,8 @@
 	
 	if($_SESSION['lectureId'] != "")
 	{
+		$query = "INSERT INTO session (userId, lectureId, role) VALUES('".$_SESSION['userId']."','".$_SESSION['lectureId']."','0')";
+		$result = mysql_query($query);
 		header("Location: ".LECTURELOGINSUCCESS);
 		die();
 	}
