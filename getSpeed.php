@@ -5,19 +5,12 @@
 			
 	$result = mysql_query($query);
 	
-	$sumOfValues = 0;
-	$count = 0;
+	$i = 0;
 	
 	while($line = mysql_fetch_array($result))
 	{
-		$sumOfValues = $sumOfValues + $line['value'];
-		$count++;
+		$values[i] = $line['value'];
 	}
-	
-	if($count != 0)
-		$speed = $sumOfValues / $count;
-	else
-		$speed = 42.0;
 		
-	$result = json_encode(array('speed' => $speed, 'count' => $count));
+	$result = json_encode($values);
 ?>
